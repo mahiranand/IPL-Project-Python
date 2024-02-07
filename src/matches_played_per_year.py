@@ -1,4 +1,5 @@
 import csv
+import matplotlib.pyplot as plt
 
 def matches_played_per_year(path):
     with open(path, 'r') as file:
@@ -13,9 +14,19 @@ def matches_played_per_year(path):
 
     return matches_played
 
+def plotGraph(matches_played_per_year):
+    years = list(matches_played_per_year.keys())
+    matches = list(matches_played_per_year.values())
+
+    plt.bar(years, matches, color='orange')
+    plt.xlabel('Years')
+    plt.ylabel('Matches Played')
+    plt.title('Matches played per year')
+    plt.show()
+
 def main():
     path = 'data/matches.csv'
-    print(matches_played_per_year(path))
+    plotGraph(matches_played_per_year(path))
     
 if __name__ == "__main__":
     main()

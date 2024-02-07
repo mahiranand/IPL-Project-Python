@@ -1,4 +1,5 @@
 import csv
+import matplotlib.pyplot as plt
 
 def top_10_eco_bowler_2015(matches_path, deliveries_path):
     with open(matches_path, 'r') as file:
@@ -32,10 +33,21 @@ def top_10_eco_bowler_2015(matches_path, deliveries_path):
 
     return top_10_eco_bowler
 
+def plotGraph(top_10_eco_bowler):
+    bowlers = list(top_10_eco_bowler.keys())
+    economy = list(top_10_eco_bowler.values())
+
+    plt.bar(bowlers, economy)
+    plt.xlabel('Bowlers')
+    plt.ylabel('Economy')
+    plt.title('Top 10 economy bowlers of 2015')
+    plt.xticks(rotation=90)
+    plt.show()
+
 def main(): 
     matches_path = 'data/matches.csv'
     deliveries_path = 'data/deliveries.csv'
-    print(top_10_eco_bowler_2015(matches_path, deliveries_path))
+    plotGraph(top_10_eco_bowler_2015(matches_path, deliveries_path))
 
 if __name__ == "__main__":
     main()

@@ -1,4 +1,5 @@
 import csv
+import matplotlib.pyplot as plt
 
 def extra_runs_conceded_by_team_in_2016(matches_path, deliveries_path):
     with open(matches_path, 'r') as file:
@@ -22,10 +23,21 @@ def extra_runs_conceded_by_team_in_2016(matches_path, deliveries_path):
     
     return extra_runs_conceded
 
+def plotGraph(extra_runs_conceded_by_team_in_2016):
+    teams = list(extra_runs_conceded_by_team_in_2016.keys())
+    extra_runs = list(extra_runs_conceded_by_team_in_2016.values())
+
+    plt.bar(teams, extra_runs)
+    plt.xlabel('Teams')
+    plt.ylabel('Extra Runs')
+    plt.title('Extra runs conceded by each team in 2016')
+    plt.xticks(rotation=90)
+    plt.show()
+
 def main():
     matches_path = 'data/matches.csv'
     deliveries_path = 'data/deliveries.csv'
-    print(extra_runs_conceded_by_team_in_2016(matches_path, deliveries_path))
+    plotGraph(extra_runs_conceded_by_team_in_2016(matches_path, deliveries_path))
 
 if __name__ == "__main__":
     main()
